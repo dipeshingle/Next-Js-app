@@ -11,9 +11,12 @@ interface Props {
 
 const Banner = ({ netflixOriginals }: Props) => {
   const [movie, setMovie] = useState<Movie | null>(null);
+  console.log(netflixOriginals, "netflixOriginals");
 
   useEffect(() => {
-    setMovie(netflixOriginals[Math.random() * netflixOriginals.length]);
+    setMovie(
+      netflixOriginals[Math.floor(Math.random() * netflixOriginals.length)]
+    );
   }, []);
   console.log(movie, "movie");
 
@@ -29,10 +32,10 @@ const Banner = ({ netflixOriginals }: Props) => {
       <h1 className="text-2xl lg:text-7xl md:text-4xl font-bold">
         {movie?.title || movie?.name || movie?.original_name}
       </h1>
-      <p className="max-w-xs text-xs md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl">
+      <p className="max-w-xs text-shadow-md  text-xs md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl">
         {movie?.overview}
       </p>
-      <div>
+      <div className="flex space-x-3">
         <button className="bannerButton bg-white text-black">
           <FaPlay className="h-4 w-4 text-black " />
         </button>
